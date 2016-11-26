@@ -1,0 +1,16 @@
+
+  switch (yyn) {
+
+case 1:
+#line 71 "tiger.y"
+{printf("program --> ChangeMe$\n");;
+    break;}
+case 2:
+#line 73 "tiger.y"
+{printf("ChangeMe --> INT INT\n");;
+    break;}
+case 3:
+#line 74 "tiger.y"
+{printf("ChangeMe --> INT\n");;
+    break;}
+}

@@ -1,0 +1,42 @@
+
+  switch (yyn) {
+
+case 1:
+#line 106 "tiger.y"
+{yyval.gval.RowOpList = yyvsp[0].gval.RowOpList;;
+    break;}
+case 2:
+#line 108 "tiger.y"
+{yyval.gval.RowOpList = AST_Alloc_RowOpList(yyvsp[0].gval.RowOp,NULL);;
+    break;}
+case 3:
+#line 109 "tiger.y"
+{yyval.gval.RowOpList = AST_Alloc_RowOpList(yyvsp[-1].gval.RowOp,yyvsp[0].gval.RowOpList);;
+    break;}
+case 4:
+#line 111 "tiger.y"
+{yyval.gval.ival =  1;;
+    break;}
+case 5:
+#line 112 "tiger.y"
+{yyval.gval.ival = -1;;
+    break;}
+case 6:
+#line 114 "tiger.y"
+{yyval.gval.Number = NULL;;
+    break;}
+case 7:
+#line 116 "tiger.y"
+{yyval.gval.RowOp = AST_Alloc_Ri_Swap_Rj(   yyvsp[-2].gval.row,yyvsp[0].gval.row);;
+    break;}
+case 8:
+#line 117 "tiger.y"
+{
+															if (yyvsp[-5].gval.row != yyvsp[-3].gval.row)
+															{
+																printf("INVLID ROW OPERATION\n");
+																assert(0);
+															}
+														;
+    break;}
+}

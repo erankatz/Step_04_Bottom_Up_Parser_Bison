@@ -1,0 +1,24 @@
+
+  switch (yyn) {
+
+case 1:
+#line 73 "tiger.y"
+{printf("Legal Expression\n");;
+    break;}
+case 2:
+#line 75 "tiger.y"
+{printf("E --> ID = INT\n");;
+    break;}
+case 3:
+#line 76 "tiger.y"
+{printf("E --> { L }\n");;
+    break;}
+case 4:
+#line 78 "tiger.y"
+{printf("L --> E\n");;
+    break;}
+case 5:
+#line 79 "tiger.y"
+{printf("L --> L ; E\n");;
+    break;}
+}

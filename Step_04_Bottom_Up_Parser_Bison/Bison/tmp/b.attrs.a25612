@@ -1,0 +1,45 @@
+#line 1 "tiger.y"
+
+/*************************/
+/* GENERAL INCLUDE FILES */
+/*************************/
+#include <stdio.h>
+
+/*************************/
+/* PROJECT INCLUDE FILES */
+/*************************/
+#include "../Parser/AST.h"
+
+/*************************/
+/* PROJECT INCLUDE FILES */
+/*************************/
+#include "../../HEADER_FILES/util.h"
+#include "../../HEADER_FILES/errormsg.h"
+
+#define alloca malloc
+
+int yylex(void); /* function prototype */
+
+void yyerror(char *s)
+{
+ EM_error(EM_tokPos, "%s", s);
+}
+
+#line 30 "tiger.y"
+typedef union
+{
+	union
+	{
+		int							row;
+		int							ival;
+		float						fval;
+		string						sval;
+		AST_RowOp					RowOp;
+		AST_Number					Number;
+		AST_RowOpList				RowOpList;
+		AST_Ri_Swap_Rj				Ri_Swap_Rj;
+		AST_Ri_Equals_cRi			Ri_Equals_cRi;
+		AST_Ri_Equals_Ri_Plus_cRj	Ri_Equals_Ri_Plus_cRj;
+	}
+	gval;
+} YYSTYPE;

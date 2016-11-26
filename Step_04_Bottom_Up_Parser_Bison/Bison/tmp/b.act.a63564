@@ -1,0 +1,32 @@
+
+  switch (yyn) {
+
+case 1:
+#line 75 "tiger.y"
+{printf("S --> E$\n");;
+    break;}
+case 2:
+#line 77 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 3:
+#line 78 "tiger.y"
+{printf("E --> E + E\n");;
+    break;}
+case 4:
+#line 79 "tiger.y"
+{printf("E --> E - E\n");;
+    break;}
+case 5:
+#line 80 "tiger.y"
+{printf("E --> E * E\n");;
+    break;}
+case 6:
+#line 81 "tiger.y"
+{printf("E --> E / E\n");;
+    break;}
+case 7:
+#line 82 "tiger.y"
+{printf("E --> (E)\n");;
+    break;}
+}

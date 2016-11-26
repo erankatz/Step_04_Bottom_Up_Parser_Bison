@@ -1,0 +1,17 @@
+﻿Build started 22/11/2016 13:48:54.
+     1>Project "C:\Users\Oren Ish Shalom\Dropbox\MTA\COMPILATION\2016-2017\Compilation\Compilation_For_Students\Compiler\Step_04_Bottom_Up_Parser_Bison\Flex\Flex.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Flex.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         Flex.vcxproj -> C:\Users\Oren Ish Shalom\Dropbox\MTA\COMPILATION\2016-2017\Compilation\Compilation_For_Students\Compiler\Step_04_Bottom_Up_Parser_Bison\Flex\Debug\Flex.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\Flex.unsuccessfulbuild".
+         Touching "Debug\Flex.lastbuildstate".
+     1>Done Building Project "C:\Users\Oren Ish Shalom\Dropbox\MTA\COMPILATION\2016-2017\Compilation\Compilation_For_Students\Compiler\Step_04_Bottom_Up_Parser_Bison\Flex\Flex.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.15

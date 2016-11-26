@@ -1,0 +1,44 @@
+
+  switch (yyn) {
+
+case 1:
+#line 104 "tiger.y"
+{yyval.gval = yyvsp[0].gval.RowOpList;;
+    break;}
+case 2:
+#line 106 "tiger.y"
+{yyval.gval = AST_Alloc_RowOpList(yyvsp[0].gval.RowOp,NULL);;
+    break;}
+case 3:
+#line 107 "tiger.y"
+{yyval.gval = AST_Alloc_RowOpList(yyvsp[-1].gval.RowOp,yyvsp[0].gval.RowOpList);;
+    break;}
+case 4:
+#line 109 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 5:
+#line 110 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 6:
+#line 112 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 7:
+#line 113 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 8:
+#line 115 "tiger.y"
+{yyval.gval = AST_Alloc_Ri_Swap_Rj(   yyvsp[-2].gval.row,yyvsp[0].gval.row);;
+    break;}
+case 9:
+#line 116 "tiger.y"
+{yyval.gval = AST_Alloc_Ri_equals_cRi(yyvsp[-3].gval.row,yyvsp[-1].gval.Number);;
+    break;}
+case 10:
+#line 117 "tiger.y"
+{yyval.gval = AST_Alloc_Ri_Equals_Ri_Plus_cRj(yyvsp[-5].gval.row,yyvsp[-3].gval.row,yyvsp[-1].gval.Number);;
+    break;}
+}

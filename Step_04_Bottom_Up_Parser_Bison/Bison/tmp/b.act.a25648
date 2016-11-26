@@ -1,0 +1,60 @@
+
+  switch (yyn) {
+
+case 1:
+#line 108 "tiger.y"
+{printf("S --> E$\n");;
+    break;}
+case 2:
+#line 110 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 3:
+#line 111 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 4:
+#line 113 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 5:
+#line 114 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 6:
+#line 115 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 7:
+#line 117 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 8:
+#line 119 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 9:
+#line 120 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 10:
+#line 122 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 11:
+#line 123 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 12:
+#line 125 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 13:
+#line 126 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+case 14:
+#line 127 "tiger.y"
+{printf("E --> INT\n");;
+    break;}
+}
