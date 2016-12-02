@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  warshall.c
   version.c
   symtab.c
@@ -122,3 +123,7 @@ c:\develop\projects\compailers\step_04_bottom_up_parser_bison\step_04_bottom_up_
   Generating Code...
 alloca.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   Bison.vcxproj -> C:\Develop\Projects\Compailers\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Bison\Debug\Bison.exe
+=======
+﻿alloca.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+  Bison.vcxproj -> D:\GitHub\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Parser\Debug\Bison.exe
+>>>>>>> 3bbc7ee09bcbc69e76c4e23f0b8cea6d0c315832

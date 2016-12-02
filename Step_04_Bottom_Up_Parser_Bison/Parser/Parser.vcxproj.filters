@@ -33,6 +33,9 @@
     <ClCompile Include="..\Flex\lex.yy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LinearAlgebra1Master.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Input.txt">
@@ -50,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Bison\tiger.tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearAlgebra1Master.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

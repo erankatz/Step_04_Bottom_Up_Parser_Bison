@@ -37,6 +37,7 @@ void yyerror(char *s)
 		int							ival;
 		float						fval;
 		string						sval;
+		int**						matrix;
 		AST_RowOp					RowOp;
 		AST_Number					Number;
 		AST_RowOpList				RowOpList;
@@ -93,6 +94,7 @@ void yyerror(char *s)
 %token <gval> ROW
 %token <gval> TYPE 
 
+%type <gval> matrix
 %type <gval> op
 %type <gval> RowOp
 %type <gval> Number
@@ -102,7 +104,7 @@ void yyerror(char *s)
 %start program
 
 %%
-
+matrix:					LBRACK INT INT INT SEMICOLON INT INT INT SEMICOLON INT INT INT RBRACK {$$.matrix=NULL;}
 program:				RowOpList						{$$.RowOpList = $1.RowOpList;}
 
 RowOpList:				RowOp							{$$.RowOpList = AST_Alloc_RowOpList($1.RowOp,NULL);}
@@ -111,17 +113,19 @@ RowOpList:				RowOp							{$$.RowOpList = AST_Alloc_RowOpList($1.RowOp,NULL);}
 op:						PLUS							{$$.ival =  1;}
 						| MINUS							{$$.ival = -1;}
 
-Number:					INT								{$$.Number = NULL;}
+Number:					INT								{$$.Number = AST_Alloc_Number($1.ival,1);}
+						| INT DIVIDE INT				{$$.Number = AST_Alloc_Number($1.ival,$2.ival);}
 
-RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj(   $1.row,$3.row);}
+RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj($1.row,$3.row);}
 						| ROW ARROW ROW op Number ROW	{
 															if ($1.row != $3.row)
 															{
 																printf("INVLID ROW OPERATION\n");
 																assert(0);
 															}
+															$$.RowOp = AST_Alloc_Ri_Equals_Ri_Plus_cRj($1.row,$2.ival,$3.Number,$4.row)
 														}
-
+													
 %%
 
 	

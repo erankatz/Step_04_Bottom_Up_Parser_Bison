@@ -50,7 +50,8 @@ main(argc, argv)
   getargs(argc, argv);
   openfiles();
 
-  /* read the input.  Copy some parts of it to fguard, faction, ftable and fattrs.
+  /* read the input
+  .  Copy some parts of it to fguard, faction, ftable and fattrs.
      In file reader.c.
      The other parts are recorded in the grammar; see gram.h.  */
   reader();

@@ -80,6 +80,7 @@
     <ClCompile Include="..\Flex\lex.yy.c" />
     <ClCompile Include="AST.c" />
     <ClCompile Include="driver.c" />
+    <ClCompile Include="LinearAlgebra1Master.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Input.txt" />
@@ -89,6 +90,7 @@
     <ClInclude Include="..\..\HEADER_FILES\util.h" />
     <ClInclude Include="..\Bison\tiger.tab.h" />
     <ClInclude Include="AST.h" />
+    <ClInclude Include="LinearAlgebra1Master.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
