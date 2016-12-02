@@ -106,6 +106,16 @@ AST_RowOpList	AST_Alloc_RowOpList(AST_RowOp head,AST_RowOpList tail)
 }
 AST_RowOp		AST_Alloc_Ri_Equals_Ri_Plus_cRj(int i, int op, AST_Number c,int j)
 {
-	// TODO
-	return NULL;
+	AST_Ri_Equals_Ri_Plus_cRj p;
+
+	p = (AST_Ri_Equals_Ri_Plus_cRj)checked_malloc(sizeof(*p));
+
+	p->i = i;
+	p->c = c;
+	if (op == -1)
+	{
+		p->c->nominator *= -1;
+	}
+	p->j = j;
+	return p;
 }

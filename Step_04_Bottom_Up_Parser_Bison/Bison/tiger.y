@@ -112,7 +112,7 @@ op:						PLUS							{$$.ival =  1;}
 						| MINUS							{$$.ival = -1;}
 
 Number:					INT								{$$.Number = NULL;}
-
+						| INT / INT						{$$.Number = NULL;}
 RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj(   $1.row,$3.row);}
 						| ROW ARROW ROW op Number ROW	{
 															if ($1.row != $3.row)
@@ -120,8 +120,9 @@ RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj(   $1.row,$3
 																printf("INVLID ROW OPERATION\n");
 																assert(0);
 															}
+															$$.RowOp = AST_Alloc_Ri_Equals_Ri_Plus_cRj($1.row,$2.ival,$3.Number,$4.row)
 														}
-
+													
 %%
 
 	

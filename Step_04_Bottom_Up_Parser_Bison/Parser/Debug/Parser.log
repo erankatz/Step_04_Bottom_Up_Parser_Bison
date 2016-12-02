@@ -1,5 +1,7 @@
-﻿  util.c
-  errormsg.c
+﻿  AST.c
+d:\github\step_04_bottom_up_parser_bison\step_04_bottom_up_parser_bison\parser\ast.c(120): warning C4133: 'return' : incompatible types - from 'AST_Ri_Equals_Ri_Plus_cRj' to 'AST_RowOp'
+  lex.yy.c
+  tiger.tab.c
   Generating Code...
 errormsg.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   Parser.vcxproj -> D:\GitHub\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Parser\Debug\Parser.exe
