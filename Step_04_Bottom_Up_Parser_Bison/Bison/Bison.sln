@@ -1,7 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bison", "Bison.vcxproj", "{2C038CCF-7AB8-4F74-B43C-97AD6A49C286}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Flex", "..\Flex\Flex.vcxproj", "{44451804-AA0A-48C2-9891-B774595C0744}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Parser", "..\Parser\Parser.vcxproj", "{6A4C9B67-A16D-438A-9427-4A647B044C9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +19,14 @@ Global
 		{2C038CCF-7AB8-4F74-B43C-97AD6A49C286}.Debug|Win32.Build.0 = Debug|Win32
 		{2C038CCF-7AB8-4F74-B43C-97AD6A49C286}.Release|Win32.ActiveCfg = Release|Win32
 		{2C038CCF-7AB8-4F74-B43C-97AD6A49C286}.Release|Win32.Build.0 = Release|Win32
+		{44451804-AA0A-48C2-9891-B774595C0744}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44451804-AA0A-48C2-9891-B774595C0744}.Debug|Win32.Build.0 = Debug|Win32
+		{44451804-AA0A-48C2-9891-B774595C0744}.Release|Win32.ActiveCfg = Release|Win32
+		{44451804-AA0A-48C2-9891-B774595C0744}.Release|Win32.Build.0 = Release|Win32
+		{6A4C9B67-A16D-438A-9427-4A647B044C9F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6A4C9B67-A16D-438A-9427-4A647B044C9F}.Debug|Win32.Build.0 = Debug|Win32
+		{6A4C9B67-A16D-438A-9427-4A647B044C9F}.Release|Win32.ActiveCfg = Release|Win32
+		{6A4C9B67-A16D-438A-9427-4A647B044C9F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
