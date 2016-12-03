@@ -98,10 +98,13 @@ void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int
 {
 	AST_Number** tmp = matrix;
 	AST_Number** elem = CreateElementaryMatrix(3, 3);
-	elem[i - 1][j - 1] = c;
-	matrix =  MatrixMultiplication(elem, matrix);
+	AST_Number Number_op = (AST_Alloc_Number(op, 1));
+	elem[i - 1][j - 1] = AST_Number_Multiplication_Operator(Number_op, c);
+
+	matrix = MatrixMultiplication(elem, matrix);
 	//FreeMatrix(tmp);
 	FreeMatrix(elem);
+	free(Number_op);
 }
 
 void FreeMatrix(AST_Number** mat)
