@@ -1,2 +1,0 @@
-﻿alloca.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
-  Bison.vcxproj -> D:\GitHub\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Parser\Debug\Bison.exe

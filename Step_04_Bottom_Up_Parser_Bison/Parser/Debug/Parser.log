@@ -1,3 +1,3 @@
-﻿  LinearAlgebra1Master.c
+﻿  AST.c
 errormsg.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
-  Parser.vcxproj -> D:\GitHub\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Parser\Debug\Parser.exe
+  Parser.vcxproj -> C:\Develop\Projects\Compailers\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Bison\Debug\Parser.exe

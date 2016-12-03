@@ -194,6 +194,7 @@ AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2)
 AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 {
 	int i, j;
+	float num,roundNum;
 	AST_RowOpList tmp;
 	while (RowOpList != NULL)
 	{
@@ -206,7 +207,7 @@ AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 			multiple_row(matrix, RowOpList->head->u.Ri_Equals_cRi.c, RowOpList->head->u.Ri_Equals_cRi.i);
 			break;
 		case AST_ROW_OP_TYPE_RI_EQUALS_RI_PLUS_CRJ:
-			multiple_row_plus_crj(matrix, RowOpList->head->u.Ri_Equals_Ri_Plus_cRj.i,
+			matrix = multiple_row_plus_crj(matrix, RowOpList->head->u.Ri_Equals_Ri_Plus_cRj.i,
 										  RowOpList->head->u.Ri_Equals_Ri_Plus_cRj.op,
 										  RowOpList->head->u.Ri_Equals_Ri_Plus_cRj.c,
 										  RowOpList->head->u.Ri_Equals_Ri_Plus_cRj.j);
@@ -224,7 +225,12 @@ AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 	{
 		for (j = 0; j < 3; j++)
 		{
-			printf(" %.2f ", (float)(matrix[i][j]->nominator) / (float)(matrix[i][j]->denominator));
+			num = (float)(matrix[i][j]->nominator) / (float)(matrix[i][j]->denominator);
+			roundNum = (int)num;
+			if (num == roundNum)
+				printf(" %d ", (int)num);
+			else
+				printf(" %d/%d ", matrix[i][j]->nominator, matrix[i][j]->denominator);
 		}
 		if (i != 2)
 			printf(";");

@@ -13,10 +13,11 @@ void replace_rows(AST_Number** matrix, int i,int j);
 
 void multiple_row(AST_Number** matrix, AST_Number c, int i);
 
-void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j);
+AST_Number** multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j);
 
 AST_Number** CreateMatrix(int m, int n);
 
+AST_Number** MatrixMultiplication(AST_Number** mat1, AST_Number** mat2);
 
 /*
 float myrandom();

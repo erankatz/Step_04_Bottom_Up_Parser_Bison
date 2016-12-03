@@ -1,0 +1,6 @@
+﻿  AST.c
+AST.c(178): warning C4101: 'j' : unreferenced local variable
+AST.c(229): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+  Generating code
+  Finished generating code
+  Parser.vcxproj -> C:\Develop\Projects\Compailers\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Step_04_Bottom_Up_Parser_Bison\Bison\Release\Parser.exe

@@ -51,7 +51,7 @@ AST_Number** CreateElementaryMatrix(int m, int n)
 				mat[i][j] = AST_Alloc_Number(1,1);
 			}
 			else {
-				mat[i][j] = AST_Alloc_Number(0, 0);
+				mat[i][j] = AST_Alloc_Number(0, 1);
 			}
 		}
 	}
@@ -69,10 +69,10 @@ AST_Number** MatrixMultiplication(AST_Number** mat1, AST_Number** mat2)
 	mat3 = CreateMatrix(3, 3);
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < 3; j++) {
-			sum = AST_Alloc_Number(0, 0);
+			sum = AST_Alloc_Number(0, 1);
 			for (k = 0; k < 3; k++) {
 				tmp = sum;
-				sum = AST_Number_Multiplication_Operator(AST_Number_Addition_Operator(sum, mat1[i][k]), mat2[k][j]);
+				sum = AST_Number_Addition_Operator(AST_Number_Multiplication_Operator(mat2[k][j], mat1[i][k]), sum);
 				free(tmp);
 			}
 			mat3[i][j] = sum;
@@ -94,7 +94,7 @@ void multiple_row(AST_Number** matrix, AST_Number c, int i)
 	return;
 }
 
-void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j)
+AST_Number** multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j)
 {
 	AST_Number** tmp = matrix;
 	AST_Number** elem = CreateElementaryMatrix(3, 3);
@@ -105,6 +105,7 @@ void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int
 	//FreeMatrix(tmp);
 	FreeMatrix(elem);
 	free(Number_op);
+	return matrix;
 }
 
 void FreeMatrix(AST_Number** mat)
