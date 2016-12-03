@@ -182,6 +182,7 @@ AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2)
 
 AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 {
+	int i, j;
 	AST_RowOpList tmp;
 	while (RowOpList != NULL)
 	{
@@ -207,6 +208,17 @@ AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 		RowOpList = tmp;
 	}
 
+	printf("[");
+	for (i = 0; i < 3;i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			printf(" %d ", matrix[i][j]->nominator / matrix[i][j]->denominator);
+		}
+		if (i != 2)
+			printf(";");
+	}
+	printf("]\n");
 	return matrix;
 }
 
