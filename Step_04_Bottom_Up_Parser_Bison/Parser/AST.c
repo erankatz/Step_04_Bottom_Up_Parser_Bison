@@ -157,12 +157,27 @@ AST_RowOp	AST_Alloc_Ri_Equals_cRi(int i, AST_Number c)
 
 AST_Number AST_Number_Addition_Operator(AST_Number num1, AST_Number num2)
 {
-	return AST_Alloc_Number(0,0);
+	int max, i;
+	int denominator = num1->denominator * num2->denominator;
+	int nominator = (num1->nominator * num2->denominator) + (num2->nominator * num1->denominator);
+	max = nominator > denominator ? nominator : denominator;
+	for (i = max; i > 1; i--)
+	{
+		if (nominator % i == 0 && denominator % i ==0)
+		{
+			denominator = denominator / i;
+			nominator = nominator / i;
+			break;
+		}
+	}
+	return AST_Alloc_Number(nominator, denominator);
 }
 
 AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2)
 {
-	return AST_Alloc_Number(0, 0);
+	int denominator = num1->denominator * num2->denominator;
+	int nominator = num1->nominator * num2->nominator;
+	return AST_Alloc_Number(nominator, denominator);
 }
 
 AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
