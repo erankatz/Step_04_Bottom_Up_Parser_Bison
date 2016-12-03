@@ -175,8 +175,19 @@ AST_Number AST_Number_Addition_Operator(AST_Number num1, AST_Number num2)
 
 AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2)
 {
+	int i, j, max;
 	int denominator = num1->denominator * num2->denominator;
 	int nominator = num1->nominator * num2->nominator;
+	max = nominator > denominator ? nominator : denominator;
+	for (i = max; i > 1; i--)
+	{
+		if (nominator % i == 0 && denominator % i == 0)
+		{
+			denominator = denominator / i;
+			nominator = nominator / i;
+			break;
+		}
+	}
 	return AST_Alloc_Number(nominator, denominator);
 }
 
