@@ -87,8 +87,8 @@ void multiple_row(AST_Number** matrix, AST_Number c, int i)
 	int j;
 	for (j = 0; j < 3; j++)
 	{
-		tmp = matrix[i][j];
-		matrix[i][j] = AST_Number_Multiplication_Operator(c, matrix[i][j]);
+		tmp = matrix[i-1][j];
+		matrix[i-1][j] = AST_Number_Multiplication_Operator(c, matrix[i-1][j]);
 		free(tmp);
 	}
 	return;
