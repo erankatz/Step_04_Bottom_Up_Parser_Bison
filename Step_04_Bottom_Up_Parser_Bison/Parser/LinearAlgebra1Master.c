@@ -1,14 +1,104 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#ifdef __unix__
-# include <unistd.h>
-#elif defined _WIN32
-# include <windows.h>
-#define sleep(x) Sleep(1000 * x)
-#endif
-
 #include "LinearAlgebra1Master.h"
+#include "AST.h"
+#include <assert.h>
+
+//#ifdef __unix__
+//# include <unistd.h>
+//#elif defined _WIN32
+//#include <windows.h>
+//#define sleep(x) Sleep(1000 * x)
+//#endif
+
+AST_Number** CreateMatrix(int m, int n)
+{
+	int i;
+	AST_Number **x;
+
+	x = (AST_Number **)malloc(m * sizeof(AST_Number));
+	for (i = 0; i<m; i++)
+		x[i] = (AST_Number *)malloc(n * sizeof(AST_Number));
+
+	return x;
+}
+
+void replace_rows(AST_Number** matrix,int i, int j)
+{
+	AST_Number *temp = matrix[j -1];
+	if (i != j)
+	{
+		matrix[j - 1] = matrix[i-1];
+		matrix[i - 1] = temp;
+	}
+}
+
+
+AST_Number** CreateElementaryMatrix(int m, int n)
+{
+	int i;
+	int j;
+	AST_Number** mat = CreateMatrix(m, n);
+
+	for (i = 0; i < m; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			if (i == j)
+			{
+				mat[i][j] = AST_Alloc_Number(1,1);
+			}
+			else {
+				mat[i][j] = AST_Alloc_Number(0, 0);
+			}
+		}
+	}
+
+	return mat;
+}
+
+AST_Number** MatrixMultiplication(AST_Number** mat1, AST_Number** mat2)
+{
+	int i, j, k;
+	AST_Number sum;
+	AST_Number** mat3;
+	AST_Number tmp;
+
+	mat3 = CreateMatrix(3, 3);
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < 3; j++) {
+			sum = AST_Alloc_Number(0, 0);
+			for (k = 0; k < 3; k++) {
+				tmp = sum;
+				sum = AST_Number_Multiplication_Operator(AST_Number_Addition_Operator(sum, mat1[i][k]), mat2[k][j]);
+				free(tmp);
+			}
+			mat3[i][j] = sum;
+		}
+	}
+	return mat3;
+}
+
+void multiple_row(AST_Number** matrix, AST_Number c, int i)
+{
+	AST_Number tmp;
+	int j;
+	for (j = 0; j < 3; j++)
+	{
+		tmp = matrix[i][j];
+		matrix[i][j] = AST_Number_Multiplication_Operator(c, matrix[i][j]);
+		free(tmp);
+	}
+	return;
+}
+
+void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j)
+{
+	
+}
+
 
 /*
 float myrandom()
@@ -31,18 +121,6 @@ float** RandomizeMatrix(int m, int n)
 			x[i][j] = myrandom();
 		}
 	}
-
-	return x;
-}
-
-float** CreateMatrix(int m, int n)
-{
-	int i;
-	float **x, *y;
-
-	x = (float **)malloc(m * sizeof(float));
-	for (i = 0; i<m; i++)
-		x[i] = (float *)malloc(n * sizeof(float));
 
 	return x;
 }
@@ -145,25 +223,5 @@ float** MatrixMultiplication(float** mat1, float** mat2)
 	return mat3;
 }
 
-void replace_rows(float **mat, int left)
-{
-	int tok = yylex();
-	if (tok == ROWID && yylval.ival <= N && yylval.ival <= N)
-	{
-		float *temp = mat[yylval.ival - 1];
-		mat[yylval.ival - 1] = mat[left - 1];
-		mat[left - 1] = temp;
-	}
-	else
-	{
-		if (tok != ROWID)
-		{
-			EM_error(EM_tokPos, "Error Replace Operation Must be RX <->RY");
-		}
-		else {
-			EM_error(EM_tokPos, "The Matrix Row is 3 by 3, replace operation error");
-		}
-	}
-}
-
 */
+

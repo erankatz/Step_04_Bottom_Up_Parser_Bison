@@ -48,6 +48,7 @@ void adjust(void)
 %%
 " "									{adjust(); continue;}
 \n									{adjust(); EM_newline(); continue;}
+\t									{adjust(); return TAB;}
 ","									{adjust(); return COMMA;}
 ";"									{adjust(); return SEMICOLON;}
 for									{adjust(); return FOR;}

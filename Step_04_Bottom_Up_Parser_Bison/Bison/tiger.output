@@ -1,6 +1,3 @@
-Useless nonterminals:
-
-   matrix
 
 
 Terminals which are not used:
@@ -10,11 +7,8 @@ Terminals which are not used:
    ID
    COMMA
    COLON
-   SEMICOLON
    LPAREN
    RPAREN
-   LBRACK
-   RBRACK
    LBRACE
    RBRACE
    TIMES
@@ -45,146 +39,224 @@ Terminals which are not used:
    TYPE
 
 
-Useless rules:
-
-#1     matrix :	 LBRACK INT INT INT SEMICOLON INT INT INT SEMICOLON INT INT INT RBRACK;
-
-
 
 Grammar
-rule 2    program -> RowOpList
+rule 1    program -> matrix RowOpList
+rule 2    matrix -> LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK
 rule 3    RowOpList -> RowOp
 rule 4    RowOpList -> RowOp RowOpList
-rule 5    op -> PLUS
-rule 6    op -> MINUS
-rule 7    Number -> INT
-rule 8    Number -> INT DIVIDE INT
-rule 9    RowOp -> ROW DOUBLE_ARROW ROW
-rule 10   RowOp -> ROW ARROW ROW op Number ROW
+rule 5    RowOpList -> RowOp TAB RowOpList
+rule 6    op -> PLUS
+rule 7    op -> MINUS
+rule 8    Number -> INT
+rule 9    Number -> INT DIVIDE INT
+rule 10   RowOp -> ROW DOUBLE_ARROW ROW
+rule 11   RowOp -> ROW ARROW ROW op Number ROW
+rule 12   RowOp -> ROW ARROW Number ROW
 
 Terminals, with rules where they appear
 
 $ (-1)
 error (256)
-INT (258) 1 7 8
-FLOAT (259)
-STRING (260)
-ID (261)
-COMMA (262)
-COLON (263)
-SEMICOLON (264) 1
-LPAREN (265)
-RPAREN (266)
-LBRACK (267) 1
-RBRACK (268) 1
-LBRACE (269)
-RBRACE (270)
-ARROW (271) 10
-PLUS (272) 5
-MINUS (273) 6
-TIMES (274)
-DIVIDE (275) 8
-EQ (276)
-NEQ (277)
-LT (278)
-LE (279)
-GT (280)
-GE (281)
-AND (282)
-OR (283)
-ASSIGN (284)
-ARRAY (285)
-IF (286)
-THEN (287)
-ELSE (288)
-WHILE (289)
-FOR (290)
-TO (291)
-DO (292)
-LET (293)
-IN (294)
-END (295)
-OF (296)
-BREAK (297)
-NIL (298)
-FUNCTION (299)
-DOUBLE_ARROW (300) 9
-ROW (301) 9 10
-TYPE (302)
+TAB (258) 5
+INT (259) 8 9
+FLOAT (260)
+STRING (261)
+ID (262)
+COMMA (263)
+COLON (264)
+SEMICOLON (265) 2
+LPAREN (266)
+RPAREN (267)
+LBRACK (268) 2
+RBRACK (269) 2
+LBRACE (270)
+RBRACE (271)
+ARROW (272) 11 12
+PLUS (273) 6
+MINUS (274) 7
+TIMES (275)
+DIVIDE (276) 9
+EQ (277)
+NEQ (278)
+LT (279)
+LE (280)
+GT (281)
+GE (282)
+AND (283)
+OR (284)
+ASSIGN (285)
+ARRAY (286)
+IF (287)
+THEN (288)
+ELSE (289)
+WHILE (290)
+FOR (291)
+TO (292)
+DO (293)
+LET (294)
+IN (295)
+END (296)
+OF (297)
+BREAK (298)
+NIL (299)
+FUNCTION (300)
+DOUBLE_ARROW (301) 10
+ROW (302) 10 11 12
+TYPE (303)
 
 Nonterminals, with rules where they appear
 
-program (48)
-    on left: 2
-RowOpList (49)
-    on left: 3 4, on right: 2 4
-op (50)
-    on left: 5 6, on right: 10
-Number (51)
-    on left: 7 8, on right: 10
-RowOp (52)
-    on left: 9 10, on right: 3 4
+program (49)
+    on left: 1
+matrix (50)
+    on left: 2, on right: 1
+RowOpList (51)
+    on left: 3 4 5, on right: 1 4 5
+op (52)
+    on left: 6 7, on right: 11
+Number (53)
+    on left: 8 9, on right: 2 11 12
+RowOp (54)
+    on left: 10 11 12, on right: 3 4 5
 
 
 state 0
 
-    ROW 	shift, and go to state 1
+    LBRACK	shift, and go to state 1
 
-    program	go to state 17
-    RowOpList	go to state 2
-    RowOp	go to state 3
+    program	go to state 35
+    matrix	go to state 2
 
 
 
 state 1
 
-    RowOp  ->  ROW . DOUBLE_ARROW ROW   (rule 9)
-    RowOp  ->  ROW . ARROW ROW op Number ROW   (rule 10)
+    matrix  ->  LBRACK . Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
 
-    ARROW	shift, and go to state 4
-    DOUBLE_ARROW	shift, and go to state 5
+    INT 	shift, and go to state 3
+
+    Number	go to state 4
 
 
 
 state 2
 
-    program  ->  RowOpList .   (rule 2)
+    program  ->  matrix . RowOpList   (rule 1)
 
-    $default	reduce using rule 2 (program)
+    ROW 	shift, and go to state 5
+
+    RowOpList	go to state 6
+    RowOp	go to state 7
 
 
 
 state 3
 
-    RowOpList  ->  RowOp .   (rule 3)
-    RowOpList  ->  RowOp . RowOpList   (rule 4)
+    Number  ->  INT .   (rule 8)
+    Number  ->  INT . DIVIDE INT   (rule 9)
 
-    ROW 	shift, and go to state 1
+    DIVIDE	shift, and go to state 8
 
-    $default	reduce using rule 3 (RowOpList)
-
-    RowOpList	go to state 6
-    RowOp	go to state 3
+    $default	reduce using rule 8 (Number)
 
 
 
 state 4
 
-    RowOp  ->  ROW ARROW . ROW op Number ROW   (rule 10)
+    matrix  ->  LBRACK Number . Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
 
-    ROW 	shift, and go to state 7
+    INT 	shift, and go to state 3
+
+    Number	go to state 9
 
 
 
 state 5
 
-    RowOp  ->  ROW DOUBLE_ARROW . ROW   (rule 9)
+    RowOp  ->  ROW . DOUBLE_ARROW ROW   (rule 10)
+    RowOp  ->  ROW . ARROW ROW op Number ROW   (rule 11)
+    RowOp  ->  ROW . ARROW Number ROW   (rule 12)
 
-    ROW 	shift, and go to state 8
+    ARROW	shift, and go to state 10
+    DOUBLE_ARROW	shift, and go to state 11
 
 
 
 state 6
+
+    program  ->  matrix RowOpList .   (rule 1)
+
+    $default	reduce using rule 1 (program)
+
+
+
+state 7
+
+    RowOpList  ->  RowOp .   (rule 3)
+    RowOpList  ->  RowOp . RowOpList   (rule 4)
+    RowOpList  ->  RowOp . TAB RowOpList   (rule 5)
+
+    TAB 	shift, and go to state 12
+    ROW 	shift, and go to state 5
+
+    $default	reduce using rule 3 (RowOpList)
+
+    RowOpList	go to state 13
+    RowOp	go to state 7
+
+
+
+state 8
+
+    Number  ->  INT DIVIDE . INT   (rule 9)
+
+    INT 	shift, and go to state 14
+
+
+
+state 9
+
+    matrix  ->  LBRACK Number Number . Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 15
+
+
+
+state 10
+
+    RowOp  ->  ROW ARROW . ROW op Number ROW   (rule 11)
+    RowOp  ->  ROW ARROW . Number ROW   (rule 12)
+
+    INT 	shift, and go to state 3
+    ROW 	shift, and go to state 16
+
+    Number	go to state 17
+
+
+
+state 11
+
+    RowOp  ->  ROW DOUBLE_ARROW . ROW   (rule 10)
+
+    ROW 	shift, and go to state 18
+
+
+
+state 12
+
+    RowOpList  ->  RowOp TAB . RowOpList   (rule 5)
+
+    ROW 	shift, and go to state 5
+
+    RowOpList	go to state 19
+    RowOp	go to state 7
+
+
+
+state 13
 
     RowOpList  ->  RowOp RowOpList .   (rule 4)
 
@@ -192,106 +264,203 @@ state 6
 
 
 
-state 7
-
-    RowOp  ->  ROW ARROW ROW . op Number ROW   (rule 10)
-
-    PLUS	shift, and go to state 9
-    MINUS	shift, and go to state 10
-
-    op  	go to state 11
-
-
-
-state 8
-
-    RowOp  ->  ROW DOUBLE_ARROW ROW .   (rule 9)
-
-    $default	reduce using rule 9 (RowOp)
-
-
-
-state 9
-
-    op  ->  PLUS .   (rule 5)
-
-    $default	reduce using rule 5 (op)
-
-
-
-state 10
-
-    op  ->  MINUS .   (rule 6)
-
-    $default	reduce using rule 6 (op)
-
-
-
-state 11
-
-    RowOp  ->  ROW ARROW ROW op . Number ROW   (rule 10)
-
-    INT 	shift, and go to state 12
-
-    Number	go to state 13
-
-
-
-state 12
-
-    Number  ->  INT .   (rule 7)
-    Number  ->  INT . DIVIDE INT   (rule 8)
-
-    DIVIDE	shift, and go to state 14
-
-    $default	reduce using rule 7 (Number)
-
-
-
-state 13
-
-    RowOp  ->  ROW ARROW ROW op Number . ROW   (rule 10)
-
-    ROW 	shift, and go to state 15
-
-
-
 state 14
 
-    Number  ->  INT DIVIDE . INT   (rule 8)
+    Number  ->  INT DIVIDE INT .   (rule 9)
 
-    INT 	shift, and go to state 16
+    $default	reduce using rule 9 (Number)
 
 
 
 state 15
 
-    RowOp  ->  ROW ARROW ROW op Number ROW .   (rule 10)
+    matrix  ->  LBRACK Number Number Number . SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
 
-    $default	reduce using rule 10 (RowOp)
+    SEMICOLON	shift, and go to state 20
 
 
 
 state 16
 
-    Number  ->  INT DIVIDE INT .   (rule 8)
+    RowOp  ->  ROW ARROW ROW . op Number ROW   (rule 11)
 
-    $default	reduce using rule 8 (Number)
+    PLUS	shift, and go to state 21
+    MINUS	shift, and go to state 22
+
+    op  	go to state 23
 
 
 
 state 17
 
-    $   	go to state 18
+    RowOp  ->  ROW ARROW Number . ROW   (rule 12)
+
+    ROW 	shift, and go to state 24
 
 
 
 state 18
 
-    $   	go to state 19
+    RowOp  ->  ROW DOUBLE_ARROW ROW .   (rule 10)
+
+    $default	reduce using rule 10 (RowOp)
 
 
 
 state 19
+
+    RowOpList  ->  RowOp TAB RowOpList .   (rule 5)
+
+    $default	reduce using rule 5 (RowOpList)
+
+
+
+state 20
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON . Number Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 25
+
+
+
+state 21
+
+    op  ->  PLUS .   (rule 6)
+
+    $default	reduce using rule 6 (op)
+
+
+
+state 22
+
+    op  ->  MINUS .   (rule 7)
+
+    $default	reduce using rule 7 (op)
+
+
+
+state 23
+
+    RowOp  ->  ROW ARROW ROW op . Number ROW   (rule 11)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 26
+
+
+
+state 24
+
+    RowOp  ->  ROW ARROW Number ROW .   (rule 12)
+
+    $default	reduce using rule 12 (RowOp)
+
+
+
+state 25
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number . Number Number SEMICOLON Number Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 27
+
+
+
+state 26
+
+    RowOp  ->  ROW ARROW ROW op Number . ROW   (rule 11)
+
+    ROW 	shift, and go to state 28
+
+
+
+state 27
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number . Number SEMICOLON Number Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 29
+
+
+
+state 28
+
+    RowOp  ->  ROW ARROW ROW op Number ROW .   (rule 11)
+
+    $default	reduce using rule 11 (RowOp)
+
+
+
+state 29
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number . SEMICOLON Number Number Number RBRACK   (rule 2)
+
+    SEMICOLON	shift, and go to state 30
+
+
+
+state 30
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON . Number Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 31
+
+
+
+state 31
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number . Number Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 32
+
+
+
+state 32
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number . Number RBRACK   (rule 2)
+
+    INT 	shift, and go to state 3
+
+    Number	go to state 33
+
+
+
+state 33
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number . RBRACK   (rule 2)
+
+    RBRACK	shift, and go to state 34
+
+
+
+state 34
+
+    matrix  ->  LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK .   (rule 2)
+
+    $default	reduce using rule 2 (matrix)
+
+
+
+state 35
+
+    $   	go to state 36
+
+
+
+state 36
+
+    $   	go to state 37
+
+
+
+state 37
 
     $default	accept

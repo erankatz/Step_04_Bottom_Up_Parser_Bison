@@ -1,0 +1,61 @@
+
+  switch (yyn) {
+
+case 1:
+#line 108 "tiger.y"
+{yyval.gval.matrix = MatrixRank(yyvsp[-1].gval.matrix,yyvsp[0].gval.RowOpList);;
+    break;}
+case 2:
+#line 110 "tiger.y"
+{yyval.gval.matrix=AST_Alloc_Matrix(yyvsp[-11].gval.Number,yyvsp[-10].gval.Number,yyvsp[-9].gval.Number,
+																																					 yyvsp[-7].gval.Number,yyvsp[-6].gval.Number,yyvsp[-5].gval.Number,
+																																					 yyvsp[-3].gval.Number,yyvsp[-2].gval.Number,yyvsp[-1].gval.Number);;
+    break;}
+case 3:
+#line 113 "tiger.y"
+{yyval.gval.RowOpList = AST_Alloc_RowOpList(yyvsp[0].gval.RowOp,NULL);;
+    break;}
+case 4:
+#line 114 "tiger.y"
+{yyval.gval.RowOpList = AST_Alloc_RowOpList(yyvsp[-1].gval.RowOp,yyvsp[0].gval.RowOpList);;
+    break;}
+case 5:
+#line 115 "tiger.y"
+{yyval.gval.RowOpList = AST_Alloc_RowOpList(yyvsp[-2].gval.RowOp,yyvsp[0].gval.RowOpList);;
+    break;}
+case 6:
+#line 117 "tiger.y"
+{yyval.gval.ival =  1;;
+    break;}
+case 7:
+#line 118 "tiger.y"
+{yyval.gval.ival = -1;;
+    break;}
+case 8:
+#line 120 "tiger.y"
+{yyval.gval.Number = AST_Alloc_Number(yyvsp[0].gval.ival,1);;
+    break;}
+case 9:
+#line 121 "tiger.y"
+{yyval.gval.Number = AST_Alloc_Number(yyvsp[-2].gval.ival,yyvsp[0].gval.ival);;
+    break;}
+case 10:
+#line 123 "tiger.y"
+{yyval.gval.RowOp = AST_Alloc_Ri_Swap_Rj(yyvsp[-2].gval.row,yyvsp[0].gval.row);;
+    break;}
+case 11:
+#line 124 "tiger.y"
+{
+															if (yyvsp[-5].gval.row != yyvsp[-3].gval.row)
+															{
+																printf("INVLID ROW OPERATION\n");
+																assert(0);
+															}
+															yyval.gval.RowOp = AST_Alloc_Ri_Equals_Ri_Plus_cRj(yyvsp[-5].gval.row,yyvsp[-4].gval.ival,yyvsp[-3].gval.Number,yyvsp[-2].gval.row)
+														;
+    break;}
+case 12:
+#line 132 "tiger.y"
+{yyval.gval.RowOp = AST_Alloc_Ri_Equals_cRi(yyvsp[-3].gval.row,yyvsp[-1].gval.Number);;
+    break;}
+}

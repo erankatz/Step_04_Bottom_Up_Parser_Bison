@@ -2,19 +2,27 @@
 #ifndef __LINEARALGEBRA1MASTER_H__
 #define __LINEARALGEBRA1MASTER_H__
 
+
 #define M 3
 #define N 3
-#define MATRIXFILE "Matrix.txt"
-#define OPERATIONFILE "RowOperations.txt"
+typedef struct AST_RowOp_					*AST_RowOp;
+typedef struct AST_Number_					*AST_Number;
 
-#include <assert.h>
+
+void replace_rows(AST_Number** matrix, int i,int j);
+
+void multiple_row(AST_Number** matrix, AST_Number c, int i);
+
+void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j);
+
+AST_Number** CreateMatrix(int m, int n);
+
 
 /*
 float myrandom();
 
 float** RandomizeMatrix(int m, int n);
 
-float** CreateMatrix(int m, int n);
 
 void SaveMatrixToFile(float** mat, int m, int n, const char* filename);
 

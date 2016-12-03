@@ -26,5 +26,15 @@ AST_RowOp		AST_Alloc_Ri_equals_cRi(int i, AST_Number c);
 AST_Number		AST_Alloc_Number(int nominator,int denominator);
 AST_RowOpList	AST_Alloc_RowOpList(AST_RowOp head,AST_RowOpList tail);
 AST_RowOp		AST_Alloc_Ri_Equals_Ri_Plus_cRj(int i, int op, AST_Number c,int j);
+AST_RowOp		AST_Alloc_Ri_Equals_cRi(int i, AST_Number c);
+AST_Number**	MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList);
+AST_Number**	AST_Alloc_Matrix(AST_Number num1, AST_Number num2, AST_Number num3,
+								 AST_Number num4, AST_Number num5, AST_Number num6,
+								 AST_Number num7, AST_Number num8, AST_Number num9);
+/*********/
+/* Operators */
+/*********/
+AST_Number AST_Number_Addition_Operator(AST_Number num1, AST_Number num2);
+AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2);
 
 #endif

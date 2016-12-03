@@ -37,7 +37,7 @@ void yyerror(char *s)
 		int							ival;
 		float						fval;
 		string						sval;
-		int**						matrix;
+		AST_Number**				matrix;
 		AST_RowOp					RowOp;
 		AST_Number					Number;
 		AST_RowOpList				RowOpList;
@@ -48,6 +48,7 @@ void yyerror(char *s)
 	gval;
 }
 
+%token <gval> TAB
 %token <gval> INT
 %token <gval> FLOAT
 %token <gval> STRING
@@ -104,17 +105,20 @@ void yyerror(char *s)
 %start program
 
 %%
-matrix:					LBRACK INT INT INT SEMICOLON INT INT INT SEMICOLON INT INT INT RBRACK {$$.matrix=NULL;}
-program:				RowOpList						{$$.RowOpList = $1.RowOpList;}
+program:				matrix RowOpList				{$$.matrix = MatrixRank($1.matrix,$2.RowOpList);}
 
+matrix:					LBRACK Number Number Number SEMICOLON Number Number Number SEMICOLON Number Number Number RBRACK {$$.matrix=AST_Alloc_Matrix($2.Number,$3.Number,$4.Number,
+																																					 $6.Number,$7.Number,$8.Number,
+																																					 $10.Number,$11.Number,$12.Number);}
 RowOpList:				RowOp							{$$.RowOpList = AST_Alloc_RowOpList($1.RowOp,NULL);}
 						| RowOp RowOpList				{$$.RowOpList = AST_Alloc_RowOpList($1.RowOp,$2.RowOpList);}
+						| RowOp TAB RowOpList			{$$.RowOpList = AST_Alloc_RowOpList($1.RowOp,$3.RowOpList);} 
 
 op:						PLUS							{$$.ival =  1;}
 						| MINUS							{$$.ival = -1;}
 
 Number:					INT								{$$.Number = AST_Alloc_Number($1.ival,1);}
-						| INT DIVIDE INT				{$$.Number = AST_Alloc_Number($1.ival,$2.ival);}
+						| INT DIVIDE INT				{$$.Number = AST_Alloc_Number($1.ival,$3.ival);}
 
 RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj($1.row,$3.row);}
 						| ROW ARROW ROW op Number ROW	{
@@ -123,9 +127,7 @@ RowOp:					ROW DOUBLE_ARROW ROW 			{$$.RowOp = AST_Alloc_Ri_Swap_Rj($1.row,$3.ro
 																printf("INVLID ROW OPERATION\n");
 																assert(0);
 															}
-															$$.RowOp = AST_Alloc_Ri_Equals_Ri_Plus_cRj($1.row,$2.ival,$3.Number,$4.row)
+															$$.RowOp = AST_Alloc_Ri_Equals_Ri_Plus_cRj($1.row,$4.ival,$5.Number,$6.row)
 														}
-													
+						| ROW ARROW Number ROW			{$$.RowOp = AST_Alloc_Ri_Equals_cRi($1.row,$3.Number);}							
 %%
-
-	

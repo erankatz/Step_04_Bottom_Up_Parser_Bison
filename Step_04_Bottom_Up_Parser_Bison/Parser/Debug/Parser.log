@@ -1,4 +1,6 @@
-﻿  lex.yy.c
+﻿  LinearAlgebra1Master.c
+  AST.c
+  lex.yy.c
   tiger.tab.c
   Generating Code...
 errormsg.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
