@@ -37,4 +37,5 @@ AST_Number**	AST_Alloc_Matrix(AST_Number num1, AST_Number num2, AST_Number num3,
 AST_Number AST_Number_Addition_Operator(AST_Number num1, AST_Number num2);
 AST_Number AST_Number_Multiplication_Operator(AST_Number num1, AST_Number num2);
 
+void FreeMatrix(AST_Number** mat);
 #endif

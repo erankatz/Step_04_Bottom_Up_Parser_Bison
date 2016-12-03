@@ -96,9 +96,28 @@ void multiple_row(AST_Number** matrix, AST_Number c, int i)
 
 void multiple_row_plus_crj(AST_Number** matrix, int i, int op, AST_Number c, int j)
 {
-	
+	AST_Number** tmp = matrix;
+	AST_Number** elem = CreateElementaryMatrix(3, 3);
+	elem[i - 1][j - 1] = c;
+	matrix =  MatrixMultiplication(elem, matrix);
+	//FreeMatrix(tmp);
+	FreeMatrix(elem);
 }
 
+void FreeMatrix(AST_Number** mat)
+{
+	int i,j;
+
+	for (i = 0; i<3; i++)
+	{
+		for (j = 0; j <3 ; j++)
+		{
+			free(mat[i][j]);
+		}
+		free(mat[i]);
+	}
+	free(mat);
+}
 
 /*
 float myrandom()
