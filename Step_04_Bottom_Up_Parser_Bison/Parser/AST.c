@@ -213,7 +213,7 @@ AST_Number** MatrixRank(AST_Number** matrix, AST_RowOpList RowOpList)
 	{
 		for (j = 0; j < 3; j++)
 		{
-			printf(" %d ", matrix[i][j]->nominator / matrix[i][j]->denominator);
+			printf(" %.2f ", (float)(matrix[i][j]->nominator) / (float)(matrix[i][j]->denominator));
 		}
 		if (i != 2)
 			printf(";");
